@@ -16,31 +16,17 @@ Rules:
 - Sound like a real customer support executive
 - If customer is angry, calm them
 - If issue is unknown, say human support will contact them
-- Ask one clarifying question at a time when needed
+- Avoid asking for more details unless absolutely required to act
+- If details are missing, make a reasonable assumption and state it briefly
+- Offer a next step or checklist the customer can try now
 """
 
 
 def _fallback_response(user_message):
-
-    message = (user_message or "").lower()
-
-    if not message:
-        return "I can help with that. Please tell me what happened so I can look into it."
-
-    if any(keyword in message for keyword in ["refund", "billing", "charged", "payment"]):
-        return "I understand the billing issue. I’m checking the account details now, and if needed I’ll connect you with a specialist."
-
-    if any(keyword in message for keyword in ["cancel", "close", "terminate"]):
-        return "I can help with the cancellation request. Please confirm your account number and I’ll guide you through the next step."
-
-    if any(keyword in message for keyword in ["angry", "upset", "frustrated"]):
-        return "I’m sorry for the trouble. I’ll stay with you and work through this step by step."
-
-    return "Thanks for explaining that. Please share one more detail so I can resolve this quickly."
+    return "The AI service is temporarily unavailable. Please try again in a moment."
 
 
 def generate_ai_response(user_message, conversation_history=None, memory_summary=""):
-
     if client is None:
         return _fallback_response(user_message)
 
